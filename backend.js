@@ -152,7 +152,7 @@ app.get('/hattertar', (req, res) => {
 })
 
 
-//------------------------     Gépház lekérdezése     ------------------------
+//------------------------     Gépház lekérdezése     ------------------------\\
 
 
 app.get('/gephaz', (req, res) => {
@@ -170,7 +170,40 @@ app.get('/gephaz', (req, res) => {
 })
 
 
+//----------------------     Alaplap kereses       ------------------------------\\
 
+
+app.post('/keresalap', (req, res) => {
+
+  kapcsolat()
+
+  let parancs="select * from alaplap where alaplap_marka LIKE '%"+req.body.bevitel1+"%'"
+  connection.query(parancs, (err, rows, fields) => {
+    if (err) console.log(err)
+  else
+    res.send(rows)
+  })
+  
+  connection.end()
+})
+
+
+//----------------------     Processzor kereses       ------------------------------\\
+
+
+app.post('/keresproci', (req, res) => {
+
+  kapcsolat()
+
+  let parancs="select * from processzor where processzor_marka LIKE '%"+req.body.bevitel1+"%'"
+  connection.query(parancs, (err, rows, fields) => {
+    if (err) console.log(err)
+  else
+    res.send(rows)
+  })
+  
+  connection.end()
+})
 
 
 
